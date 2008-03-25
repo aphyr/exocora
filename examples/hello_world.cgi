@@ -1,9 +1,8 @@
 #!/usr/bin/ruby
 
-require 'rubygems'
-require 'exocora'
+require File.dirname(__FILE__) + '/../lib/exocora'
 
-class HelloWorld < Exocora::Script
+class HelloWorld < Exocora::Sheet
   def process(data)
     {:body => "Hello, world"}
   end
