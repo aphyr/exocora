@@ -15,8 +15,11 @@ $LOAD_PATH.unshift(BASEDIR)
 $LOAD_PATH.uniq!
 
 require 'exocora/string'
+require 'exocora/array'
+require 'exocora/cgi'
 require 'exocora/support'
 require 'exocora/errors'
+require 'exocora/validation'
 require 'exocora/sheet'
 
 module Exocora

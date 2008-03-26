@@ -26,6 +26,18 @@ class String
     self[/([^:]+)$/]
   end
 
+  # Splits the string into module and class components
+  #
+  # "Foo::Bar::Baz".module_split => ["Foo", "Bar", "Baz"]
+  def module_split
+    self.split /::/
+  end
+
+  # Converts the string into a conventional path.
+  def module_path
+    File.join(module_split.map {|e| e.underscore })
+  end
+
   # Converts dashes, spaces, and capitals to underscore separators.
   #
   # "FooBar-Baz Whee".underscore => 'foo_bar_baz_whee'

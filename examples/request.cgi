@@ -3,10 +3,10 @@
 require File.dirname(__FILE__) + '/../lib/exocora'
 #require '/home/aphyr/exocora/lib/exocora'
 
-class HelloWorld < Exocora::Sheet
+class Request < Exocora::Sheet
   def process
-    {:body => "Hello, world"}
+    {:r => request}
   end
 end
 
-HelloWorld.run
+Request.run

@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <title>Validation Test</title>
+  </head>
+  <body>
+    <h1>Errors</h1>
+    <ul>
+      <% @errors.each do |name, errors| %>
+        <li><%= name %> <%= errors.to_sentence %>.</li>
+      <% end %>
+    </ul>
+
+    <h1>All Parameters</h1>
+    <ul>
+      <% @params.each do |name, value| %>
+        <li><%= name %>: <%= value.inspect %></li>
+      <% end %>
+    </ul>
+  </body>
+</html>
