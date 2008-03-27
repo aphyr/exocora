@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <title>Request Test</title>
+  </head>
+  <body>
+    <h1>Inferred URI information</h1>
+    <ul>
+      <li>Host URI: <%== @r.host_uri %></li>
+      <li>Relative URI: <%==@r.relative_uri %></li>
+      <li>Full URI: <%== @r.uri %></li>
+    </ul>
+
+    <h1>Request Parameters</h1>
+    <% names = [
+    'AUTH_TYPE', 'HTTP_HOST', 'REMOTE_IDENT',
+'CONTENT_LENGTH', 'HTTP_NEGOTIATE', 'REMOTE_USER',
+'CONTENT_TYPE', 'HTTP_PRAGMA', 'REQUEST_METHOD',
+'GATEWAY_INTERFACE', 'HTTP_REFERER', 'SCRIPT_NAME',
+'HTTP_ACCEPT', 'HTTP_USER_AGENT', 'SERVER_NAME',
+'HTTP_ACCEPT_CHARSET', 'PATH_INFO', 'SERVER_PORT',
+'HTTP_ACCEPT_ENCODING', 'PATH_TRANSLATED', 'SERVER_PROTOCOL',
+'HTTP_ACCEPT_LANGUAGE', 'QUERY_STRING', 'SERVER_SOFTWARE',
+'HTTP_CACHE_CONTROL', 'REMOTE_ADDR',
+'HTTP_FROM', 'REMOTE_HOST'
+    ] %>
+    <table>
+    <% names.each do |name| %>
+      <tr>
+        <td><%== name %></td>
+        <td><%== @r.send(name.downcase.sub(/^http_/, '')).inspect %></td>
+      </tr>
+    <% end %>
+    </table>
+  </body>
+</html>

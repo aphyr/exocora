@@ -18,7 +18,7 @@ exocora_gemspec = Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY
   s.summary = 'A small framework for cgi scripts'
 
-  s.files = FileList['{lib}/**/*', 'LICENSE'].to_a
+  s.files = FileList['{examples}/**/*', '{lib}/**/*', 'LICENSE'].to_a
   s.require_path = 'lib'
   s.has_rdoc = true
 

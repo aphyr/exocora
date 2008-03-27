@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Exocora::Sheet)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/exocora/sheet.rb, line 13</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>
+      <span class="ruby-ivar">@cgi</span> = <span class="ruby-constant">CGI</span>.<span class="ruby-identifier">new</span>
+      <span class="ruby-ivar">@headers</span> = {
+        <span class="ruby-value str">&quot;Content-type&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;text/html&quot;</span>
+      }
+      
+      <span class="ruby-ivar">@params</span> = {}
+      <span class="ruby-ivar">@errors</span> = {}
+      
+      <span class="ruby-ivar">@template</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">module_path</span>
+      <span class="ruby-ivar">@log_file</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">underscore</span> <span class="ruby-operator">+</span> <span class="ruby-value str">'.log'</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>render (Exocora::Sheet)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/exocora/sheet.rb, line 112</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">render</span>(<span class="ruby-identifier">context</span> = <span class="ruby-constant">Erubis</span><span class="ruby-operator">::</span><span class="ruby-constant">Context</span>.<span class="ruby-identifier">new</span>)
+      <span class="ruby-comment cmt"># Read template data</span>
+      <span class="ruby-identifier">template_filename</span> = <span class="ruby-node">&quot;#{@template}.rhtml&quot;</span>
+      <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-identifier">template</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">template_filename</span>)
+      <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">ENOENT</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">ScriptError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;Template #{template_filename} does not exist!&quot;</span>)
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-comment cmt"># Prepare template and variables</span>
+      <span class="ruby-identifier">eruby</span> = <span class="ruby-constant">Erubis</span><span class="ruby-operator">::</span><span class="ruby-constant">Eruby</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">template</span>
+      
+      <span class="ruby-comment cmt"># Perform templating</span>
+      <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-identifier">result</span> = <span class="ruby-identifier">eruby</span>.<span class="ruby-identifier">evaluate</span> <span class="ruby-identifier">context</span>
+      <span class="ruby-keyword kw">rescue</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">TemplateError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;Encountered error processing template #{template_filename}.&quot;</span>, <span class="ruby-identifier">$!</span>)
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-comment cmt"># Output result</span>
+      <span class="ruby-identifier">output</span> <span class="ruby-identifier">result</span> 
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

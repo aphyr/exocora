@@ -80,15 +80,15 @@
 
     <div id="description">
       <p>
-A single CGI script. Requests are processed through a chain of actions
+A single <a href="../CGI.html">CGI</a> script. Requests are processed
+through a chain of actions
 </p>
 <p>
-<a href="Sheet.html#M000012">sanitize</a> - extract and <a
-href="Sheet.html#M000012">sanitize</a> data from the CGI request <a
-href="Sheet.html#M000009">process</a> - do stuff <a
-href="Sheet.html#M000010">render</a> - <a
-href="Sheet.html#M000010">render</a> to the specified <a
-href="Sheet.html#M000013">template</a>.
+<a href="Sheet.html#M000026">validate</a> - extract and sanitize data from
+the <a href="../CGI.html">CGI</a> <a href="Sheet.html#M000035">request</a>
+<a href="Sheet.html#M000032">process</a> - do stuff <a
+href="Sheet.html#M000034">render</a> - <a
+href="Sheet.html#M000034">render</a> to the specified template.
 </p>
 
     </div>
@@ -100,14 +100,21 @@ href="Sheet.html#M000013">template</a>.
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000006">new</a>&nbsp;&nbsp;
-      <a href="#M000008">output</a>&nbsp;&nbsp;
-      <a href="#M000009">process</a>&nbsp;&nbsp;
-      <a href="#M000010">render</a>&nbsp;&nbsp;
-      <a href="#M000007">run</a>&nbsp;&nbsp;
-      <a href="#M000011">run</a>&nbsp;&nbsp;
-      <a href="#M000012">sanitize</a>&nbsp;&nbsp;
-      <a href="#M000013">template</a>&nbsp;&nbsp;
+      <a href="#M000028">cast_params</a>&nbsp;&nbsp;
+      <a href="#M000029">log</a>&nbsp;&nbsp;
+      <a href="#M000030">log_to</a>&nbsp;&nbsp;
+      <a href="#M000025">new</a>&nbsp;&nbsp;
+      <a href="#M000031">output</a>&nbsp;&nbsp;
+      <a href="#M000032">process</a>&nbsp;&nbsp;
+      <a href="#M000033">redirect_to</a>&nbsp;&nbsp;
+      <a href="#M000034">render</a>&nbsp;&nbsp;
+      <a href="#M000035">request</a>&nbsp;&nbsp;
+      <a href="#M000027">run</a>&nbsp;&nbsp;
+      <a href="#M000036">run</a>&nbsp;&nbsp;
+      <a href="#M000037">use_template</a>&nbsp;&nbsp;
+      <a href="#M000038">valid?</a>&nbsp;&nbsp;
+      <a href="#M000026">validate</a>&nbsp;&nbsp;
+      <a href="#M000039">validate</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -122,6 +129,24 @@ href="Sheet.html#M000013">template</a>.
 
 
 
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">errors</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">params</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        </table>
+      </div>
+    </div>
       
 
 
@@ -129,12 +154,12 @@ href="Sheet.html#M000013">template</a>.
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000006" class="method-detail">
-        <a name="M000006"></a>
+      <div id="method-M000025" class="method-detail">
+        <a name="M000025"></a>
 
         <div class="method-heading">
-          <a href="Sheet.src/M000006.html" target="Code" class="method-signature"
-            onclick="popupCode('Sheet.src/M000006.html');return false;">
+          <a href="Sheet.src/M000025.html" target="Code" class="method-signature"
+            onclick="popupCode('Sheet.src/M000025.html');return false;">
           <span class="method-name">new</span><span class="method-args">()</span>
           </a>
         </div>
@@ -143,12 +168,12 @@ href="Sheet.html#M000013">template</a>.
         </div>
       </div>
 
-      <div id="method-M000007" class="method-detail">
-        <a name="M000007"></a>
+      <div id="method-M000027" class="method-detail">
+        <a name="M000027"></a>
 
         <div class="method-heading">
-          <a href="Sheet.src/M000007.html" target="Code" class="method-signature"
-            onclick="popupCode('Sheet.src/M000007.html');return false;">
+          <a href="Sheet.src/M000027.html" target="Code" class="method-signature"
+            onclick="popupCode('Sheet.src/M000027.html');return false;">
           <span class="method-name">run</span><span class="method-args">()</span>
           </a>
         </div>
@@ -160,76 +185,176 @@ Creates an instance of this sheet, and runs it.
         </div>
       </div>
 
-      <h3 class="section-bar">Public Instance methods</h3>
-
-      <div id="method-M000008" class="method-detail">
-        <a name="M000008"></a>
+      <div id="method-M000026" class="method-detail">
+        <a name="M000026"></a>
 
         <div class="method-heading">
-          <a href="Sheet.src/M000008.html" target="Code" class="method-signature"
-            onclick="popupCode('Sheet.src/M000008.html');return false;">
+          <a href="Sheet.src/M000026.html" target="Code" class="method-signature"
+            onclick="popupCode('Sheet.src/M000026.html');return false;">
+          <span class="method-name">validate</span><span class="method-args">(param, message='must be valid', &amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Adds a validation condition for a parameter. <a
+href="Sheet.html#M000026">validate</a> :query { |q| q.size &gt; 0 } <a
+href="Sheet.html#M000026">validate</a> :query, &quot;is invalid&quot; { |q|
+</p>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000028" class="method-detail">
+        <a name="M000028"></a>
+
+        <div class="method-heading">
+          <a href="Sheet.src/M000028.html" target="Code" class="method-signature"
+            onclick="popupCode('Sheet.src/M000028.html');return false;">
+          <span class="method-name">cast_params</span><span class="method-args">(params)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Casts incoming <a href="../CGI.html">CGI</a> parameters to nil, numerics,
+collapses single-element arrays, and so forth.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000029" class="method-detail">
+        <a name="M000029"></a>
+
+        <div class="method-heading">
+          <a href="Sheet.src/M000029.html" target="Code" class="method-signature"
+            onclick="popupCode('Sheet.src/M000029.html');return false;">
+          <span class="method-name">log</span><span class="method-args">(message)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Logs a message to a file.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000030" class="method-detail">
+        <a name="M000030"></a>
+
+        <div class="method-heading">
+          <a href="Sheet.src/M000030.html" target="Code" class="method-signature"
+            onclick="popupCode('Sheet.src/M000030.html');return false;">
+          <span class="method-name">log_to</span><span class="method-args">(file)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Chooses the file for logging.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000031" class="method-detail">
+        <a name="M000031"></a>
+
+        <div class="method-heading">
+          <a href="Sheet.src/M000031.html" target="Code" class="method-signature"
+            onclick="popupCode('Sheet.src/M000031.html');return false;">
           <span class="method-name">output</span><span class="method-args">(string)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-Sends <a href="Sheet.html#M000008">output</a> to the client. The first time
-<a href="Sheet.html#M000008">output</a> is called, it sends an HTTP header
+Sends <a href="Sheet.html#M000031">output</a> to the client. The first time
+<a href="Sheet.html#M000031">output</a> is called, it sends an HTTP header
 first.
 </p>
         </div>
       </div>
 
-      <div id="method-M000009" class="method-detail">
-        <a name="M000009"></a>
+      <div id="method-M000032" class="method-detail">
+        <a name="M000032"></a>
 
         <div class="method-heading">
-          <a href="Sheet.src/M000009.html" target="Code" class="method-signature"
-            onclick="popupCode('Sheet.src/M000009.html');return false;">
-          <span class="method-name">process</span><span class="method-args">(data)</span>
+          <a href="Sheet.src/M000032.html" target="Code" class="method-signature"
+            onclick="popupCode('Sheet.src/M000032.html');return false;">
+          <span class="method-name">process</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-Process is the meat of the script, which takes the clean data from <a
-href="Sheet.html#M000012">sanitize</a>. It returns a hash like {:a =&gt;
-2}, which become instance variables @a = 2 in the <a
-href="Sheet.html#M000013">template</a>.
+Process is the meat of the script. It returns a hash like {:a =&gt; 2},
+which become instance variables @a = 2 in the template.
 </p>
         </div>
       </div>
 
-      <div id="method-M000010" class="method-detail">
-        <a name="M000010"></a>
+      <div id="method-M000033" class="method-detail">
+        <a name="M000033"></a>
 
         <div class="method-heading">
-          <a href="Sheet.src/M000010.html" target="Code" class="method-signature"
-            onclick="popupCode('Sheet.src/M000010.html');return false;">
-          <span class="method-name">render</span><span class="method-args">(variables = {})</span>
+          <a href="Sheet.src/M000033.html" target="Code" class="method-signature"
+            onclick="popupCode('Sheet.src/M000033.html');return false;">
+          <span class="method-name">redirect_to</span><span class="method-args">(uri)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-Renders the erubis <a href="Sheet.html#M000013">template</a> for this
-action. Takes a hash of variables to <a
-href="Sheet.html#M000010">render</a>. The default <a
-href="Sheet.html#M000013">template</a> is determined by underscoring this
-sheet&#8216;s class name, but another <a
-href="Sheet.html#M000013">template</a> can be specified using <a
-href="Sheet.html#M000013">template</a>.
+Breaks the normal rendering flow, and outputs an HTTP redirect header.
 </p>
         </div>
       </div>
 
-      <div id="method-M000011" class="method-detail">
-        <a name="M000011"></a>
+      <div id="method-M000034" class="method-detail">
+        <a name="M000034"></a>
 
         <div class="method-heading">
-          <a href="Sheet.src/M000011.html" target="Code" class="method-signature"
-            onclick="popupCode('Sheet.src/M000011.html');return false;">
+          <a href="Sheet.src/M000034.html" target="Code" class="method-signature"
+            onclick="popupCode('Sheet.src/M000034.html');return false;">
+          <span class="method-name">render</span><span class="method-args">(context = Erubis::Context.new)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Renders the erubis template for this action. Takes a hash of variables to
+<a href="Sheet.html#M000034">render</a>. The default template is determined
+by underscoring this sheet&#8216;s class name, but another template can be
+specified using template.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000035" class="method-detail">
+        <a name="M000035"></a>
+
+        <div class="method-heading">
+          <a href="Sheet.src/M000035.html" target="Code" class="method-signature"
+            onclick="popupCode('Sheet.src/M000035.html');return false;">
+          <span class="method-name">request</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Accessor for the <a href="../CGI.html">CGI</a> object
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000036" class="method-detail">
+        <a name="M000036"></a>
+
+        <div class="method-heading">
+          <a href="Sheet.src/M000036.html" target="Code" class="method-signature"
+            onclick="popupCode('Sheet.src/M000036.html');return false;">
           <span class="method-name">run</span><span class="method-args">()</span>
           </a>
         </div>
@@ -241,39 +366,57 @@ This is the action which initiates processing of the script.
         </div>
       </div>
 
-      <div id="method-M000012" class="method-detail">
-        <a name="M000012"></a>
+      <div id="method-M000037" class="method-detail">
+        <a name="M000037"></a>
 
         <div class="method-heading">
-          <a href="Sheet.src/M000012.html" target="Code" class="method-signature"
-            onclick="popupCode('Sheet.src/M000012.html');return false;">
-          <span class="method-name">sanitize</span><span class="method-args">(cgi)</span>
+          <a href="Sheet.src/M000037.html" target="Code" class="method-signature"
+            onclick="popupCode('Sheet.src/M000037.html');return false;">
+          <span class="method-name">use_template</span><span class="method-args">(template)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-Sanitize takes a CGI request object as its single parameter. It returns a
-hash of sanitized data, which is passed to the <a
-href="Sheet.html#M000009">process</a> method.
+Sets the name of the template to <a href="Sheet.html#M000034">render</a>.
 </p>
         </div>
       </div>
 
-      <div id="method-M000013" class="method-detail">
-        <a name="M000013"></a>
+      <div id="method-M000038" class="method-detail">
+        <a name="M000038"></a>
 
         <div class="method-heading">
-          <a href="Sheet.src/M000013.html" target="Code" class="method-signature"
-            onclick="popupCode('Sheet.src/M000013.html');return false;">
-          <span class="method-name">template</span><span class="method-args">(template)</span>
+          <a href="Sheet.src/M000038.html" target="Code" class="method-signature"
+            onclick="popupCode('Sheet.src/M000038.html');return false;">
+          <span class="method-name">valid?</span><span class="method-args">(param = nil)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-Sets the name of the <a href="Sheet.html#M000013">template</a> to <a
-href="Sheet.html#M000010">render</a>.
+Returns true if the specified (or all) parameters have no errors.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000039" class="method-detail">
+        <a name="M000039"></a>
+
+        <div class="method-heading">
+          <a href="Sheet.src/M000039.html" target="Code" class="method-signature"
+            onclick="popupCode('Sheet.src/M000039.html');return false;">
+          <span class="method-name">validate</span><span class="method-args">(params = @params)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Validates <a href="../CGI.html">CGI</a> parameters according to
+@@validations.
+</p>
+<p>
+Parameters which fail validation have entries recorderd in @errors.
 </p>
         </div>
       </div>

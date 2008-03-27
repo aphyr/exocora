@@ -1,0 +1,23 @@
+Version 0.1.0 (2008-03-27)
+  Initial release
+  Validations
+    Simple validations for incoming parameters
+    Supports object comparison (rubric === value)
+    Supports block comparison (block.call value)
+    Natural language for expressing validation
+      validate(:quantity).when(Numeric).because('must be a number')
+      validate(:quantity, 'must be a number') { |value| value.kind_of? Numeric }
+      validate(:short).explain('must be less than 5 characters').unless(
+        lambda { |s| s.length >= 5 }
+      )
+  CGI
+    Casts incoming parameters to numerics when appropriate
+    Infers and completes URIs
+    HTTP redirection
+  Templating
+    Erubis templating
+    Infers template name from class name
+    Only specified values from #process are available to the template
+  Miscallaneous
+    Basic logging to file
+    Error and backtrace display in browser

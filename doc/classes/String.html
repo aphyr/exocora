@@ -92,9 +92,11 @@ Provides support methods for string manipulation
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000001">camelcase</a>&nbsp;&nbsp;
-      <a href="#M000002">demodulize</a>&nbsp;&nbsp;
-      <a href="#M000003">underscore</a>&nbsp;&nbsp;
+      <a href="#M000006">camelcase</a>&nbsp;&nbsp;
+      <a href="#M000007">demodulize</a>&nbsp;&nbsp;
+      <a href="#M000009">module_path</a>&nbsp;&nbsp;
+      <a href="#M000008">module_split</a>&nbsp;&nbsp;
+      <a href="#M000010">underscore</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -116,12 +118,12 @@ Provides support methods for string manipulation
     <div id="methods">
       <h3 class="section-bar">Public Instance methods</h3>
 
-      <div id="method-M000001" class="method-detail">
-        <a name="M000001"></a>
+      <div id="method-M000006" class="method-detail">
+        <a name="M000006"></a>
 
         <div class="method-heading">
-          <a href="String.src/M000001.html" target="Code" class="method-signature"
-            onclick="popupCode('String.src/M000001.html');return false;">
+          <a href="String.src/M000006.html" target="Code" class="method-signature"
+            onclick="popupCode('String.src/M000006.html');return false;">
           <span class="method-name">camelcase</span><span class="method-args">(first_letter_capitalized = true)</span>
           </a>
         </div>
@@ -129,22 +131,22 @@ Provides support methods for string manipulation
         <div class="method-description">
           <p>
 Converts dashes, underscores, and spaces to <a
-href="String.html#M000001">camelcase</a>
+href="String.html#M000006">camelcase</a>
 </p>
 <p>
-&quot;foo_bar_baz&quot;.<a href="String.html#M000001">camelcase</a> =&gt;
+&quot;foo_bar_baz&quot;.<a href="String.html#M000006">camelcase</a> =&gt;
 &quot;FooBarBaz&quot; &quot;FooBarBaz&quot;.<a
-href="String.html#M000001">camelcase</a>(false) =&gt; &quot;fooBarBaz&quot;
+href="String.html#M000006">camelcase</a>(false) =&gt; &quot;fooBarBaz&quot;
 </p>
         </div>
       </div>
 
-      <div id="method-M000002" class="method-detail">
-        <a name="M000002"></a>
+      <div id="method-M000007" class="method-detail">
+        <a name="M000007"></a>
 
         <div class="method-heading">
-          <a href="String.src/M000002.html" target="Code" class="method-signature"
-            onclick="popupCode('String.src/M000002.html');return false;">
+          <a href="String.src/M000007.html" target="Code" class="method-signature"
+            onclick="popupCode('String.src/M000007.html');return false;">
           <span class="method-name">demodulize</span><span class="method-args">()</span>
           </a>
         </div>
@@ -154,18 +156,56 @@ href="String.html#M000001">camelcase</a>(false) =&gt; &quot;fooBarBaz&quot;
 Removes module and class prefixes
 </p>
 <p>
-&quot;Foo::Bar::Baz&quot;.<a href="String.html#M000002">demodulize</a>
+&quot;Foo::Bar::Baz&quot;.<a href="String.html#M000007">demodulize</a>
 =&gt; &quot;Baz&quot;
 </p>
         </div>
       </div>
 
-      <div id="method-M000003" class="method-detail">
-        <a name="M000003"></a>
+      <div id="method-M000009" class="method-detail">
+        <a name="M000009"></a>
 
         <div class="method-heading">
-          <a href="String.src/M000003.html" target="Code" class="method-signature"
-            onclick="popupCode('String.src/M000003.html');return false;">
+          <a href="String.src/M000009.html" target="Code" class="method-signature"
+            onclick="popupCode('String.src/M000009.html');return false;">
+          <span class="method-name">module_path</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Converts the string into a conventional path.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000008" class="method-detail">
+        <a name="M000008"></a>
+
+        <div class="method-heading">
+          <a href="String.src/M000008.html" target="Code" class="method-signature"
+            onclick="popupCode('String.src/M000008.html');return false;">
+          <span class="method-name">module_split</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Splits the string into module and class components
+</p>
+<p>
+&quot;Foo::Bar::Baz&quot;.<a href="String.html#M000008">module_split</a>
+=&gt; [&quot;Foo&quot;, &quot;Bar&quot;, &quot;Baz&quot;]
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000010" class="method-detail">
+        <a name="M000010"></a>
+
+        <div class="method-heading">
+          <a href="String.src/M000010.html" target="Code" class="method-signature"
+            onclick="popupCode('String.src/M000010.html');return false;">
           <span class="method-name">underscore</span><span class="method-args">(force_lower_case = true)</span>
           </a>
         </div>
@@ -173,10 +213,10 @@ Removes module and class prefixes
         <div class="method-description">
           <p>
 Converts dashes, spaces, and capitals to <a
-href="String.html#M000003">underscore</a> separators.
+href="String.html#M000010">underscore</a> separators.
 </p>
 <p>
-&quot;FooBar-Baz Whee&quot;.<a href="String.html#M000003">underscore</a>
+&quot;FooBar-Baz Whee&quot;.<a href="String.html#M000010">underscore</a>
 =&gt; &#8216;foo_bar_baz_whee&#8216;
 </p>
         </div>
