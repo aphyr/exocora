@@ -1,6 +1,6 @@
 module Exocora
   APP_NAME = 'exocora'
-  APP_VERSION = '0.1.0'
+  APP_VERSION = '0.1.1'
   APP_AUTHOR = 'aphyr'
   APP_EMAIL = 'aphyr@aphyr.com'
   APP_URL = 'http://aphyr.com/'

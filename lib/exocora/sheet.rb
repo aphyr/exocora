@@ -22,6 +22,13 @@ module Exocora
       @log_file = self.class.to_s.underscore + '.log'
     end
 
+    # Add a validation to the validation stack
+    def self.add_validation(param, validation)
+      @@validations[param.to_sym] ||= []
+      @@validations[param.to_sym] << validation
+      validation
+    end
+
     # Adds a validation condition for a parameter.
     # validate :query { |q| q.size > 0 }
     # validate :query, "is invalid" { |q| 
@@ -31,15 +38,23 @@ module Exocora
         validation.when block
       end
 
-      @@validations[param.to_s] ||= []
-      @@validations[param.to_s] << validation
-      
-      validation
+      add_validation param, validation
+    end
+
+    # Ensure that a parameter is non-nil
+    def self.validate_presence_of(param, *params)
+      add_validation param, ValidationOfPresence.new(*params)
     end
 
     # Creates an instance of this sheet, and runs it.
     def self.run
       new.run
+    end
+
+    # Adds an error on a parameter
+    def add_error(param, error)
+      @errors[param] ||= []
+      @errors[param] << error
     end
 
     # Casts incoming CGI parameters to nil, numerics, collapses single-element
@@ -57,6 +72,10 @@ module Exocora
           end
         end
 
+        # I prefer indexing by symbols
+        key = key.to_sym
+
+        # Store cast values
         if values.empty?
           cast[key] = nil
         elsif values.size == 1
@@ -99,10 +118,11 @@ module Exocora
     end
 
     # Breaks the normal rendering flow, and outputs an HTTP redirect header.
-    def redirect_to(uri_fragment)
+    def redirect_to(uri_fragment = @cgi.uri, params = {})
       @headers['Status'] = '302 Moved'
-      @headers['Location'] = @cgi.full_uri_for uri_fragment
+      @headers['Location'] = url_for(@cgi.full_uri_for(uri_fragment), params)
       output
+      exit
     end
 
     # Renders the erubis template for this action. Takes a hash of variables to
@@ -123,8 +143,13 @@ module Exocora
       # Perform templating
       begin
         result = eruby.evaluate context
-      rescue
-        raise TemplateError.new("Encountered error processing template #{template_filename}.", $!)
+      rescue Exception => e
+        if e.backtrace.first =~ /\(erubis\):(\d+)/
+          message = "encountered error processing template #{template_filename} at line #{$1}"
+        else
+          message = "encountered error processing template #{template_filename}"
+        end
+        raise TemplateError.new(message, e)
       end
 
       # Output result
@@ -161,6 +186,13 @@ module Exocora
       end
     end
 
+    # Returns a URL for the given url and parameters
+    def url_for(url = @cgi.uri, params = {})
+      url + params.inject('?') do |query_string, pair|
+        query_string << CGI::escape(pair[0].to_s) + '=' + CGI::escape(pair[1].to_s)
+      end
+    end
+
     # Sets the name of the template to render.
     def use_template(template)
       @template = template
@@ -187,13 +219,23 @@ module Exocora
           unless values.kind_of? Array
             values = [values]
           end
- 
-          values.each do |value| 
+
+#          if validation.kind_of? ValidationOfPresence
+#            # Make sure we perform a validation even if no parameters are
+#            # present.
+#            begin
+#              validation.validate values.first
+#            rescue ValidationError => e
+#              @errors[param] ||= []
+#              @errors[param] << e
+#            end
+#          end
+
+          values.each do |value|
             begin
               validation.validate(value)
             rescue ValidationError => e
-              @errors[param] ||= []
-              @errors[param] << e
+              add_error param, e
             end
           end
         end

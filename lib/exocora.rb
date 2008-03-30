@@ -14,9 +14,9 @@ BASEDIR = File.dirname(File.expand_path(__FILE__))
 $LOAD_PATH.unshift(BASEDIR)
 $LOAD_PATH.uniq!
 
-require 'string'
-require 'array'
-require 'cgi'
+require 'support/string'
+require 'support/array'
+require 'support/cgi'
 require 'exocora/support'
 require 'exocora/errors'
 require 'exocora/validation'

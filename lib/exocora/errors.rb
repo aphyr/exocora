@@ -28,20 +28,16 @@ module Exocora
 
   # Represents an error encountered when processing a template.
   class TemplateError < RuntimeError
-    attr_accessor :message, :exception
-    def initialize(message, exception)
+    attr_accessor :message, :original
+    def initialize(message, original)
       @message = message
-      @exception = exception
+      @original = original
     end
 
     def to_html
       "<p>" + Erubis::XmlHelper::escape_xml(@message) + "</p>" +
       "<p>The original exception was:</p>" +
-      if @exception.respond_to? :to_html
-        @exception.to_html
-      else
-        Erubis::XmlHelper::escape_xml(@exception.to_s)
-      end
+      @original.to_html
     end
   end
 end

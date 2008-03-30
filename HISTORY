@@ -1,3 +1,14 @@
+Version 0.1.1 (2008-03-30)
+  Validations
+    ValidationOfPresence lets you ensure a parameter is present.
+  CGI
+    url_for helper lets you construct escaped parameters programmatically.
+      url_for('index.cgi', :q => 'bar') => 'index.cgi?test=bar'
+    Made URI completion more consistent
+    Fixed CGI header duplication
+  Templating
+    Better error handling
+
 Version 0.1.0 (2008-03-27)
   Initial release
   Validations

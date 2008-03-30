@@ -4,9 +4,11 @@ module Exocora
   # Otherwise, compares filter === value.
   
   class Validation
+    DEFAULT_MESSAGE = 'must be present'
+
     attr_accessor :message, :filter, :negate
 
-    def initialize(filter = Object, message = 'must be valid')
+    def initialize(filter=Object, message=DEFAULT_MESSAGE)
       @filter = filter
       @message = message
       @negate = false
@@ -69,5 +71,23 @@ module Exocora
 
     alias :with :if
     alias :when :if
+  end
+
+  # ValidationOfPresence is a special validation which ensures its value
+  # is both present and non-empty.
+  class ValidationOfPresence < Validation
+    DEFAULT_MESSAGE = 'must be present'
+
+    def initialize(message=DEFAULT_MESSAGE)
+      @message = message
+    end
+
+    def validate(value = nil)
+      if value.nil? or (value.respond_to? :empty? and value.empty?)
+        raise ValidationError.new(value, @message)
+      else
+        value
+      end
+    end
   end
 end
